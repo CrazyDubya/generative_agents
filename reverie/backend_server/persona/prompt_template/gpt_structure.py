@@ -8,10 +8,25 @@ import json
 import random
 import openai
 import time 
+import sys
+import os
 
-from utils import *
+# Add project root to path for secure config import
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../..'))
 
-openai.api_key = openai_api_key
+try:
+    from config import OPENAI_API_KEY
+    openai.api_key = OPENAI_API_KEY
+except ImportError:
+    # Fallback to legacy utils import if config not available
+    try:
+        from utils import openai_api_key
+        openai.api_key = openai_api_key
+    except ImportError:
+        raise ValueError(
+            "OpenAI API key not configured. Please set up config.py with OPENAI_API_KEY "
+            "or create utils.py with openai_api_key variable."
+        )
 
 def temp_sleep(seconds=0.1):
   time.sleep(seconds)

@@ -2086,8 +2086,28 @@ def run_gpt_prompt_focal_pt(persona, statements, n, test_input=None, verbose=Fal
 
   # ChatGPT Plugin ===========================================================
   def __chat_func_clean_up(gpt_response, prompt=""): ############
-    ret = ast.literal_eval(gpt_response)
-    return ret
+    # Use secure validation instead of direct ast.literal_eval
+    import sys
+    import os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../..'))
+    
+    try:
+      from security_utils import safe_literal_eval
+      ret = safe_literal_eval(gpt_response, allowed_types=(list, tuple, dict))
+      if ret is None:
+        # Fallback: try to parse as JSON first, then as simple list
+        import json
+        try:
+          ret = json.loads(gpt_response)
+        except:
+          # Last resort: return the raw response if it's a simple string
+          ret = gpt_response.strip()
+      return ret
+    except ImportError:
+      # Fallback to original method if security_utils not available
+      import ast
+      ret = ast.literal_eval(gpt_response)
+      return ret
 
   def __chat_func_validate(gpt_response, prompt=""): ############
     try: 
