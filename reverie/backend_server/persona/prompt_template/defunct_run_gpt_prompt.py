@@ -33,9 +33,9 @@ def get_random_alphanumeric(i=6, j=6):
   return x
 
 
-##############################################################################
+
 # CHAPTER 1: Run GPT Prompt
-##############################################################################
+
 
 def run_gpt_prompt_wake_up_hour(persona, test_input=None, verbose=False): 
   """
@@ -285,7 +285,7 @@ def run_gpt_prompt_task_decomp(persona,
 
     curr_time_range = ""
 
-    print ("DEBUG")
+    # Removed debug print statement
     print (persona.scratch.f_daily_schedule_hourly_org)
     print (all_indices)
 
@@ -326,7 +326,7 @@ def run_gpt_prompt_task_decomp(persona,
     print (gpt_response)
     print ("-==- -==- -==- ")
 
-    # TODO SOMETHING HERE sometimes fails... See screenshot
+    # TODO: Add proper error handling sometimes fails... See screenshot
     temp = [i.strip() for i in gpt_response.split("\n")]
     _cr = []
     cr = []
@@ -404,7 +404,7 @@ def run_gpt_prompt_task_decomp(persona,
   output = safe_generate_response(prompt, gpt_param, 5, get_fail_safe(),
                                    __func_validate, __func_clean_up)
 
-  # TODO THERE WAS A BUG HERE... 
+  # TODO: Review and test this section for edge cases... 
   # This is for preventing overflows...
   """
   File "/Users/joonsungpark/Desktop/Stanford/Projects/
@@ -414,7 +414,7 @@ def run_gpt_prompt_task_decomp(persona,
   IndexError: list index out of range
   """
 
-  print ("IMPORTANT VVV DEBUG")
+  # DEBUG: print ("IMPORTANT VVV DEBUG")
 
   # print (prompt_input)
   # print (prompt)
@@ -534,7 +534,7 @@ def run_gpt_prompt_action_sector(action_description,
     # output = random.choice(x)
     output = persona.scratch.living_area.split(":")[1]
 
-  print ("DEBUG", random.choice(x), "------", output)
+  # Removed debug print statement
 
   if debug or verbose: 
     print_run_prompts(prompt_template, persona, gpt_param, 
