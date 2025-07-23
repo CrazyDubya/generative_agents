@@ -88,8 +88,15 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
-# dotenv
+# dotenv - Environment files (NEVER commit these!)
 .env
+.env.local
+.env.production
+.env.development
+utils.py
+
+# Security - API keys and secrets
+**/utils.py
 
 # virtualenv
 venv/

@@ -1,0 +1,39 @@
+# Security-focused requirements for generative agents
+
+# Core framework with security updates
+Django==4.2.7
+django-cors-headers==4.3.1
+
+# OpenAI with latest security patches
+openai==1.3.5
+
+# Data processing with security fixes
+numpy==1.24.4
+pandas==2.1.3
+scikit-learn==1.3.2
+
+# Web and networking with security patches
+requests==2.31.0
+urllib3==2.0.7
+certifi==2023.11.17
+
+# Image processing with security fixes
+Pillow==10.1.0
+
+# Natural language processing
+nltk==3.8.1
+
+# Web automation (if needed)
+selenium==4.15.2
+
+# Development and testing
+flake8==6.1.0
+black==23.11.0
+pylint==3.0.3
+mypy==1.7.1
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Additional security tools
+bandit==1.7.5
+safety==2.3.5
